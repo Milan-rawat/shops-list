@@ -1,0 +1,15 @@
+input:focus,
+button:focus {
+  outline: none;
+  border: none;
+}
+
+body {
+  background-color: whitesmoke;
+}
+
+@media screen and (min-width: 700px) {
+  body {
+    padding: 80px;
+  }
+}
