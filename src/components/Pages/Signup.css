@@ -1,0 +1,120 @@
+input:focus,
+button {
+  outline: none;
+  border: none;
+}
+.signupPage {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(248, 248, 248);
+}
+.signupPage .responseMessage {
+  width: 100%;
+  margin: 10px 0;
+  text-align: center;
+  color: red;
+  font-size: 16px;
+}
+.signupPage form {
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: auto;
+}
+.signupPage .signupPageHead {
+  margin-top: 20px;
+  font-size: 28px;
+}
+.signupPage .signupBox {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.signupBox #inputfields {
+  width: 100%;
+  height: auto;
+  margin: 10px 0;
+}
+.signupPage .signupBox #inputfields label {
+  margin: 3px 5px;
+}
+.signupPage .signupBox .textInput {
+  width: 100%;
+  height: 55px;
+  padding: 3px 15px;
+  font-size: 16px;
+  border: 1px solid rgba(128, 128, 128, 0.8);
+  border-radius: 3px;
+  background-color: rgb(248, 248, 248);
+}
+.signupPage .signupBox .agreeCheckbox {
+  padding-bottom: 25px;
+}
+.signupPage .signupBox .agreeCheckbox #agreeCheckbox {
+  height: 15px;
+  width: 15px;
+}
+.signupPage .signupBox #inputfields #signupButton {
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  background-color: rgba(10, 30, 180, 0.8);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.8);
+}
+
+/* Others below input field */
+
+.signupPage .signupOthers {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  margin: 0 20px;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signupPage .signupOthers .forSignin {
+  width: 100%;
+  height: auto;
+  text-align: end;
+}
+
+.signupPage .forSignin #signinLink {
+  text-decoration: none;
+  color: rgba(10, 30, 180, 0.8);
+}
+.signupPage .forSignin #signinLink:hover {
+  text-decoration: underline;
+}
+
+.signupPage .forCopy {
+  height: 70px;
+  width: 100%;
+  max-width: 450px;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: center;
+  color: grey;
+  font-size: 14px;
+}

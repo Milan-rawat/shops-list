@@ -1,5 +1,7 @@
 import classes from "./Header.module.css";
 
+import { Link } from "react-router-dom";
+
 import RippleEffect from "../UX/RippleEffect";
 
 const Header = () => {
@@ -10,7 +12,13 @@ const Header = () => {
       </div>
       <div className={classes.addButton}>
         <RippleEffect>
-          <button>Add Shop</button>
+          <Link
+            to={{
+              pathname: "/add-shop",
+            }}
+          >
+            <button>Add Shop</button>
+          </Link>
         </RippleEffect>
       </div>
     </header>
