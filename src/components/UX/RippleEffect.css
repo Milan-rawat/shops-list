@@ -1,0 +1,25 @@
+.effectRipple {
+  position: relative;
+  overflow: hidden;
+  transition: background 400ms;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  height: auto;
+  width: auto;
+}
+
+span.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms linear;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
