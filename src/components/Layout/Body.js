@@ -1,15 +1,37 @@
+import { useState } from "react";
+
 import classes from "./Body.module.css";
 
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import Modal from "../Modal/Modal";
 
 const Body = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [deletingShop, setDeletingShop] = useState({
+    id: null,
+    name: "",
+  });
+
   const shopsList = useSelector((state) => state.shopsList);
 
   const dispatch = useDispatch();
 
+  const cancelHandler = () => {
+    setShowModal(false);
+  };
+
+  const wantToRemove = (shopId, shopName) => {
+    setDeletingShop({
+      id: shopId,
+      name: shopName,
+    });
+    setShowModal(true);
+  };
+
   const removeShopHandler = (shopId) => {
     dispatch({ type: "removeShop", removingShopId: shopId });
+    setShowModal(false);
   };
 
   const ALLSHOPS = shopsList.map((shop) => (
@@ -24,7 +46,9 @@ const Body = () => {
       </div>
       <div className={classes.shopSection}>
         <Link to="/">
-          <button onClick={() => removeShopHandler(shop.id)}>Remove</button>
+          <button onClick={() => wantToRemove(shop.id, shop.shopName)}>
+            Remove
+          </button>
         </Link>
         <Link to={{ pathname: `/shop/${shop.id}` }}>
           <button>Details</button>
@@ -35,6 +59,15 @@ const Body = () => {
 
   return (
     <div className={classes.appBody}>
+      {showModal && (
+        <Modal
+          title="Delete Shop"
+          message={`Are you sure you want to delete this shop(${deletingShop.name}).`}
+          onCancel={cancelHandler}
+          deletingShopId={deletingShop.id}
+          onConfirmDelete={(shopId) => removeShopHandler(shopId)}
+        />
+      )}
       <div className={classes.shopLists}>{ALLSHOPS}</div>
     </div>
   );
