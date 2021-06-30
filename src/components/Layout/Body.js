@@ -1,5 +1,6 @@
 import classes from "./Body.module.css";
 
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Body = () => {
@@ -16,8 +17,12 @@ const Body = () => {
         <div id="shopKeeper">{shop.shopType}</div>
       </div>
       <div className={classes.shopSection}>
-        <button>Remove</button>
-        <button>Details</button>
+        <Link to="/">
+          <button>Remove</button>
+        </Link>
+        <Link to={{ pathname: `/shop/${shop.id}` }}>
+          <button>Details</button>
+        </Link>
       </div>
     </div>
   ));

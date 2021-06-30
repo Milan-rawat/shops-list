@@ -56,16 +56,16 @@
   cursor: pointer;
 }
 
-.shopSection button:first-child {
+.shopSection a:first-child button {
   display: none;
 }
 
-.shopSection button:hover {
+.shopSection a button:hover {
   background-color: #3f51b5;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-.shopSection button:last-child {
+.shopSection a:last-child button {
   background-color: whitesmoke;
   color: #3f51b5;
 }
@@ -80,7 +80,7 @@
     display: block;
   }
 
-  .shopSection button:first-child {
+  .shopSection a:first-child button {
     display: inline-block;
   }
 }
