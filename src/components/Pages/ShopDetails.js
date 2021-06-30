@@ -47,7 +47,7 @@ const ShopDetails = () => {
         <div className={classes.editButton}>
           <Link
             to={{
-              pathname: "#",
+              pathname: `/edit/${shop.id}`,
             }}
           >
             <button>Edit</button>

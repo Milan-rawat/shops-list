@@ -1,0 +1,97 @@
+.editShop {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+}
+
+.formTitle {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 20px 10px;
+}
+
+.editShop form {
+  width: 100vw;
+  max-width: 500px;
+  padding: 10px;
+}
+
+.inputField {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  margin: 10px 0;
+}
+
+.selectField {
+  width: 100%;
+  height: auto;
+  margin: 10px 0;
+}
+
+.selection {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+.selection .selectInput {
+  width: auto;
+  height: 55px;
+  background-color: white;
+  border-radius: 3px;
+  padding: 3px 15px;
+  font-size: 16px;
+}
+
+.inputField label {
+  margin: 3px 5px;
+}
+
+.inputField input {
+  width: auto;
+  height: 55px;
+  padding: 3px 15px;
+  font-size: 16px;
+  border: 1px solid rgba(128, 128, 128, 0.8);
+  border-radius: 3px;
+  background-color: white;
+}
+
+.inputField input:focus {
+  border: 2px solid #3f51b5ee;
+  box-shadow: 2px 0px 8px #3f51b599;
+}
+
+.inputField button {
+  width: auto;
+  margin: 5px;
+  height: 40px;
+  border: 1px solid #3f51b5;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #3f51b5;
+  transition: all ease-in 0.1s;
+}
+
+.inputField button:hover {
+  background-color: #3f51b5;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (min-width: 600px) {
+  .selectField {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .selection {
+    width: 50%;
+  }
+}
