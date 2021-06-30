@@ -1,10 +1,16 @@
 import classes from "./Body.module.css";
 
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const Body = () => {
   const shopsList = useSelector((state) => state.shopsList);
+
+  const dispatch = useDispatch();
+
+  const removeShopHandler = (shopId) => {
+    dispatch({ type: "removeShop", removingShopId: shopId });
+  };
 
   const ALLSHOPS = shopsList.map((shop) => (
     <div className={classes.shop} key={shop.id}>
@@ -18,7 +24,7 @@ const Body = () => {
       </div>
       <div className={classes.shopSection}>
         <Link to="/">
-          <button>Remove</button>
+          <button onClick={() => removeShopHandler(shop.id)}>Remove</button>
         </Link>
         <Link to={{ pathname: `/shop/${shop.id}` }}>
           <button>Details</button>

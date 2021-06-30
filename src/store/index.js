@@ -34,6 +34,14 @@ const shopReducer = (state = { shopsList }, action) => {
     };
   }
 
+  if (action.type === "removeShop") {
+    return {
+      shopsList: state.shopsList.filter(
+        (shop) => action.removingShopId !== shop.id
+      ),
+    };
+  }
+
   return state;
 };
 

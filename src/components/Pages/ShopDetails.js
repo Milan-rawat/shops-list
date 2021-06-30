@@ -2,8 +2,8 @@ import Header from "../Layout/Header";
 
 import classes from "./ShopDetails.module.css";
 
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useParams, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 const ShopDetails = () => {
@@ -12,6 +12,14 @@ const ShopDetails = () => {
   const { shopId } = params;
 
   const shop = shopsList.filter((shop) => shopId === shop.id)[0];
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const removeShopHandler = (shopId) => {
+    dispatch({ type: "removeShop", removingShopId: shopId });
+    history.replace("/");
+  };
 
   return (
     <>
@@ -45,6 +53,7 @@ const ShopDetails = () => {
           </table>
         </div>
         <div className={classes.editButton}>
+          <button onClick={() => removeShopHandler(shop.id)}>Remove</button>
           <Link
             to={{
               pathname: `/edit/${shop.id}`,
