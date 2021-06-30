@@ -34,28 +34,33 @@ const Body = () => {
     setShowModal(false);
   };
 
-  const ALLSHOPS = shopsList.map((shop) => (
-    <div className={classes.shop} key={shop.id}>
-      <div className={classes.shopSection}>
-        <label htmlFor="shopTitle">Shop Name</label>
-        <div id="shopTitle">{shop.shopName}</div>
+  let ALLSHOPS = [];
+  if (shopsList.length === 0) {
+    ALLSHOPS = <h3 style={{ textAlign: "center" }}>No Shops available.</h3>;
+  } else {
+    ALLSHOPS = shopsList.map((shop) => (
+      <div className={classes.shop} key={shop.id}>
+        <div className={classes.shopSection}>
+          <label htmlFor="shopTitle">Shop Name</label>
+          <div id="shopTitle">{shop.shopName}</div>
+        </div>
+        <div className={classes.shopSection}>
+          <label htmlFor="shopKeeper">Shop category</label>
+          <div id="shopKeeper">{shop.shopType}</div>
+        </div>
+        <div className={classes.shopSection}>
+          <Link to="/">
+            <button onClick={() => wantToRemove(shop.id, shop.shopName)}>
+              Remove
+            </button>
+          </Link>
+          <Link to={{ pathname: `/shop/${shop.id}` }}>
+            <button>Details</button>
+          </Link>
+        </div>
       </div>
-      <div className={classes.shopSection}>
-        <label htmlFor="shopKeeper">Shop category</label>
-        <div id="shopKeeper">{shop.shopType}</div>
-      </div>
-      <div className={classes.shopSection}>
-        <Link to="/">
-          <button onClick={() => wantToRemove(shop.id, shop.shopName)}>
-            Remove
-          </button>
-        </Link>
-        <Link to={{ pathname: `/shop/${shop.id}` }}>
-          <button>Details</button>
-        </Link>
-      </div>
-    </div>
-  ));
+    ));
+  }
 
   return (
     <div className={classes.appBody}>
