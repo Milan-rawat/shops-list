@@ -25,28 +25,15 @@ const shopsList = [
     openingDate: "05-05-2020",
     closingDate: "29-06-2021",
   },
-  {
-    id: "4",
-    shopName: "Kanha groceries",
-    shopArea: "Thane",
-    shopType: "Grocery",
-    openingDate: "05-05-2020",
-    closingDate: "29-06-2021",
-  },
-  {
-    id: "5",
-    shopName: "Kanha Chemical",
-    shopArea: "Najibabad",
-    shopType: "Chemical",
-    openingDate: "05-05-2020",
-    closingDate: "29-06-2021",
-  },
 ];
 
 const shopReducer = (state = { shopsList }, action) => {
   if (action.type === "addShop") {
-    return { shopsList: state.shopsList + 1 };
+    return {
+      shopsList: [...state.shopsList, action.newShop],
+    };
   }
+
   return state;
 };
 

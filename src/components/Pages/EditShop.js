@@ -27,6 +27,7 @@ const EditShop = () => {
           <div className={classes.selection}>
             <label htmlFor="shopArea">Shop Area</label>
             <select
+              id="shopArea"
               defaultValue={shop.shopArea}
               className={classes.selectInput}
             >
@@ -45,10 +46,10 @@ const EditShop = () => {
           <div className={classes.selection}>
             <label htmlFor="shopType">Shop Category</label>
             <select
+              id="shopType"
               defaultValue={shop.shopType}
               className={classes.selectInput}
             >
-              <option disabled id="shopType" value="none"></option>
               <option value="Grocery">Grocery</option>
               <option value="Butcher">Butcher</option>
               <option value="Baker">Baker</option>
