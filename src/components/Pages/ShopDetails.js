@@ -56,6 +56,9 @@ const ShopDetails = () => {
             onConfirmDelete={(shopId) => removeShopHandler(shopId)}
           />
         )}
+        <Link to="/">
+          <p className={classes.homeBtn}>👈Home</p>
+        </Link>
         <div className={classes.shop}>
           <table>
             <caption>{shop.shopName}</caption>

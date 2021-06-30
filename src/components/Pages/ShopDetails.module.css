@@ -11,6 +11,23 @@
   flex-direction: column;
 }
 
+.shopDetails a {
+  text-decoration: none;
+}
+
+.homeBtn {
+  border: 1px solid #3f51b5;
+  border-radius: 4px;
+  padding: 5px 10px;
+  color: #3f51b5;
+}
+
+.homeBtn:hover {
+  background-color: #3f51b5;
+  color: white;
+  box-shadow: 1px 0 4px rgba(0, 0, 0, 0.3);
+}
+
 .shop {
   width: 80%;
   min-width: 350px;

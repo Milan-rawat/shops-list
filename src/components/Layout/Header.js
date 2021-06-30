@@ -9,7 +9,9 @@ const Header = () => {
     <RippleEffect>
       <header className={classes.header}>
         <div className={classes.title}>
-          <h2>ShopList</h2>
+          <Link to="/">
+            <h2>ShopList</h2>
+          </Link>
         </div>
         <div className={classes.addButton}>
           <Link
