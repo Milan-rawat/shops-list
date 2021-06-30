@@ -42,6 +42,16 @@ const shopReducer = (state = { shopsList }, action) => {
     };
   }
 
+  if (action.type === "updateShop") {
+    return {
+      shopsList: state.shopsList.map((shop) => {
+        if (shop.id === action.updatedShop.id) {
+          return action.updatedShop;
+        } else return shop;
+      }),
+    };
+  }
+
   return state;
 };
 

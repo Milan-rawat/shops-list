@@ -1,7 +1,9 @@
+import { useState } from "react";
+
 import classes from "./EditShop.module.css";
 
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 
 const EditShop = () => {
   const shopsList = useSelector((state) => state.shopsList);
@@ -10,51 +12,91 @@ const EditShop = () => {
 
   const shop = shopsList.filter((shop) => shopId === shop.id)[0];
 
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const [shopName, setShopName] = useState(shop.shopName);
+  const [shopArea, setShopArea] = useState(shop.shopArea);
+  const [shopType, setShopType] = useState(shop.shopType);
+  const [openingDate, setOpeningDate] = useState(shop.openingDate);
+  const [closingDate, setClosingDate] = useState(shop.closingDate);
+  const [error, setError] = useState("");
+
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+    if (!shopName.match(/^[A-Z  a-z]+$/)) {
+      setError("Name must be alphbets only");
+    } else {
+      dispatch({
+        type: "updateShop",
+        updatedShop: {
+          id: shop.id,
+          shopName: shopName,
+          shopArea: shopArea,
+          shopType: shopType,
+          openingDate: openingDate,
+          closingDate: closingDate,
+        },
+      });
+      alert("Shop Updated successfully");
+      history.push(`/shop/${shopId}`);
+    }
+  };
+
   return (
     <div className={classes.editShop}>
       <div className={classes.formTitle}>Edit Shop</div>
-      <form>
+      <form onSubmit={formSubmitHandler}>
         <div className={classes.inputField}>
           <label htmlFor="shopName">Shop Name</label>
           <input
-            defaultValue={shop.shopName}
             style={{ margin: "5px" }}
             id="shopName"
             type="text"
+            value={shopName}
+            onChange={(e) => setShopName(e.target.value)}
+            required
           />
+          {error && <p className={classes.inputError}>{error}</p>}
         </div>
         <div className={`${classes.inputField} ${classes.selectField}`}>
           <div className={classes.selection}>
             <label htmlFor="shopArea">Shop Area</label>
             <select
               id="shopArea"
-              defaultValue={shop.shopArea}
               className={classes.selectInput}
+              value={shopArea}
+              onChange={(e) => setShopArea(e.target.value)}
+              required
             >
-              <option value="Thane">Thane</option>
-              <option value="Pune">Pune</option>
-              <option value="Mumbai">Mumbai</option>
-              <option value="Suburban">Suburban</option>
-              <option value="Nashik">Nashik</option>
-              <option value="Nagpur">Nagpur</option>
-              <option value="Ahmednagar">Ahmednagar</option>
-              <option value="Solapur">Solapur</option>
-              <option value="Najibabad">Najibabad</option>
-              <option value="Kotdwara">Kotdwara</option>
+              <option value="">None</option>
+              <option>Thane</option>
+              <option>Pune</option>
+              <option>Mumbai</option>
+              <option>Suburban</option>
+              <option>Nashik</option>
+              <option>Nagpur</option>
+              <option>Ahmednagar</option>
+              <option>Solapur</option>
+              <option>Najibabad</option>
+              <option>Kotdwara</option>
             </select>
           </div>
           <div className={classes.selection}>
             <label htmlFor="shopType">Shop Category</label>
             <select
               id="shopType"
-              defaultValue={shop.shopType}
               className={classes.selectInput}
+              value={shopType}
+              onChange={(e) => setShopType(e.target.value)}
+              required
             >
-              <option value="Grocery">Grocery</option>
-              <option value="Butcher">Butcher</option>
-              <option value="Baker">Baker</option>
-              <option value="Chemist">Chemist</option>
-              <option value="Stationary">Stationery shop</option>
+              <option value="">None</option>
+              <option>Grocery</option>
+              <option>Butcher</option>
+              <option>Baker</option>
+              <option>Chemist</option>
+              <option>Stationery shop</option>
             </select>
           </div>
         </div>
@@ -62,24 +104,29 @@ const EditShop = () => {
           <div className={classes.selection}>
             <label htmlFor="openingDate">Opening Date</label>
             <input
-              defaultValue={shop.openingDate}
               id="openingDate"
               type="date"
               className={classes.selectInput}
+              value={openingDate}
+              onChange={(e) => setOpeningDate(e.target.value)}
+              required
             />
           </div>
           <div className={classes.selection}>
             <label htmlFor="openingDate">Closing Date</label>
             <input
-              defaultValue={shop.closingDate}
               id="openingDate"
               type="date"
               className={classes.selectInput}
+              value={closingDate}
+              onChange={(e) => setClosingDate(e.target.value)}
+              required
+              min={openingDate}
             />
           </div>
         </div>
         <div className={classes.inputField}>
-          <button>Update Shop</button>
+          <button type="submit">Update Shop</button>
         </div>
       </form>
     </div>
