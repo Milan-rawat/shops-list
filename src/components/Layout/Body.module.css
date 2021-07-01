@@ -9,12 +9,18 @@
 
 .filters {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   margin: 5px;
 }
 .filters .filter,
 p {
   margin: 5px 10px;
+}
+.filters .dateFilter input {
+  width: 15px;
+  height: 15px;
+  margin: 4px;
 }
 .filters button {
   width: 80px;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import classes from "./Body.module.css";
 
@@ -10,15 +10,20 @@ import Modal from "../Modal/Modal";
 const Body = () => {
   const [areaFilter, setAreaFilter] = useState("All");
   const [typeFilter, setTypeFilter] = useState("All");
+  const [dateFilter, setDateFilter] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [deletingShop, setDeletingShop] = useState({
     id: null,
     name: "",
   });
 
-  const shopsList = useSelector((state) => state.shopsList.shopsList);
+  let shopsList = useSelector((state) => state.shopsList.shopsList);
 
   const [allShops, setAllShops] = useState(shopsList);
+
+  useEffect(() => {
+    setAllShops(shopsList);
+  }, [shopsList]);
 
   const dispatch = useDispatch();
 
@@ -40,7 +45,22 @@ const Body = () => {
   };
 
   const applyFilterHandler = () => {
-    console.log(areaFilter, typeFilter);
+    if (dateFilter) {
+      let fullDate = new Date();
+      let todaysDate = fullDate.getDate();
+      let todaysMonth = fullDate.getMonth() + 1;
+      let todaysYear = fullDate.getFullYear();
+      if (todaysDate < 10) todaysDate = `0${todaysDate}`;
+      if (todaysMonth < 10) todaysMonth = `0${todaysMonth}`;
+      let completeDate = [todaysYear, todaysMonth, todaysDate].join("-");
+      let list = [...shopsList];
+      shopsList = list.filter((shop) => {
+        return (
+          Date.parse(completeDate) >= Date.parse(shop.openingDate) &&
+          Date.parse(completeDate) <= Date.parse(shop.closingDate)
+        );
+      });
+    }
     if (areaFilter === "All" && typeFilter === "All") {
       setAllShops(shopsList);
     }
@@ -69,7 +89,7 @@ const Body = () => {
   };
 
   let ALLSHOPS = [];
-  if (shopsList.length === 0) {
+  if (allShops.length === 0) {
     ALLSHOPS = <h3 style={{ textAlign: "center" }}>No Shops available.</h3>;
   } else {
     ALLSHOPS = allShops.map((shop) => (
@@ -147,6 +167,15 @@ const Body = () => {
             <option>Chemist</option>
             <option>Stationery shop</option>
           </select>
+        </div>
+        <div className={`${classes.filter} ${classes.dateFilter}`}>
+          <label htmlFor="dateFilter">By Today's Date</label>
+          <input
+            type="checkbox"
+            id="dateFilter"
+            value={dateFilter}
+            onChange={() => setDateFilter((prevState) => !prevState)}
+          />
         </div>
         <button onClick={applyFilterHandler}>Apply filters</button>
       </div>
