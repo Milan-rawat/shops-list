@@ -8,6 +8,7 @@ import Modal from "../Modal/Modal";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { shopListActions } from "../../store/index";
 
 const ShopDetails = () => {
   const [showModal, setShowModal] = useState(false);
@@ -16,7 +17,7 @@ const ShopDetails = () => {
     name: "",
   });
 
-  const shopsList = useSelector((state) => state.shopsList);
+  const shopsList = useSelector((state) => state.shopsList.shopsList);
   const params = useParams();
   const { shopId } = params;
 
@@ -38,7 +39,7 @@ const ShopDetails = () => {
   };
 
   const removeShopHandler = (shopId) => {
-    dispatch({ type: "removeShop", removingShopId: shopId });
+    dispatch(shopListActions.removeShop(shopId));
     setShowModal(false);
     history.replace("/");
   };

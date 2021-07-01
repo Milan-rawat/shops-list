@@ -1,3 +1,5 @@
+// import { useEffect } from "react";
+
 import "./App.css";
 import Home from "./components/Pages/Home";
 import AddShop from "./components/Pages/AddShop";

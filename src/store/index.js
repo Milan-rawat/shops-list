@@ -1,4 +1,4 @@
-import { createStore } from "redux";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const shopsList = [
   {
@@ -27,34 +27,34 @@ const shopsList = [
   },
 ];
 
-const shopReducer = (state = { shopsList }, action) => {
-  if (action.type === "addShop") {
-    return {
-      shopsList: [...state.shopsList, action.newShop],
-    };
-  }
-
-  if (action.type === "removeShop") {
-    return {
-      shopsList: state.shopsList.filter(
-        (shop) => action.removingShopId !== shop.id
-      ),
-    };
-  }
-
-  if (action.type === "updateShop") {
-    return {
-      shopsList: state.shopsList.map((shop) => {
-        if (shop.id === action.updatedShop.id) {
-          return action.updatedShop;
+const shopListSlice = createSlice({
+  name: "shopList",
+  initialState: {
+    shopsList: shopsList,
+  },
+  reducers: {
+    addShop(state, action) {
+      state.shopsList = [...state.shopsList, action.payload];
+    },
+    removeShop(state, action) {
+      state.shopsList = state.shopsList.filter(
+        (shop) => action.payload !== shop.id
+      );
+    },
+    updateShop(state, action) {
+      state.shopsList = state.shopsList.map((shop) => {
+        if (shop.id === action.payload.id) {
+          return action.payload;
         } else return shop;
-      }),
-    };
-  }
+      });
+    },
+  },
+});
 
-  return state;
-};
+export const shopListActions = shopListSlice.actions;
 
-const store = createStore(shopReducer);
+const store = configureStore({
+  reducer: { shopsList: shopListSlice.reducer },
+});
 
 export default store;

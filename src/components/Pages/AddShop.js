@@ -4,6 +4,7 @@ import classes from "./AddShop.module.css";
 
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { shopListActions } from "../../store/index";
 
 const AddShop = () => {
   const history = useHistory();
@@ -22,17 +23,15 @@ const AddShop = () => {
     if (!shopName.match(/^[A-Z  a-z]+$/)) {
       setError("Name must be alphbets only");
     } else {
-      dispatch({
-        type: "addShop",
-        newShop: {
-          id: `${Math.random()}`.slice(2),
-          shopName: shopName,
-          shopArea: shopArea,
-          shopType: shopType,
-          openingDate: openingDate,
-          closingDate: closingDate,
-        },
-      });
+      const newShop = {
+        id: `${Math.random()}`.slice(2),
+        shopName: shopName,
+        shopArea: shopArea,
+        shopType: shopType,
+        openingDate: openingDate,
+        closingDate: closingDate,
+      };
+      dispatch(shopListActions.addShop(newShop));
       alert("Shop added successfully");
       history.push("/");
     }

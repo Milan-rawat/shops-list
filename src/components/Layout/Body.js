@@ -4,6 +4,7 @@ import classes from "./Body.module.css";
 
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { shopListActions } from "../../store/index";
 import Modal from "../Modal/Modal";
 
 const Body = () => {
@@ -13,7 +14,7 @@ const Body = () => {
     name: "",
   });
 
-  const shopsList = useSelector((state) => state.shopsList);
+  const shopsList = useSelector((state) => state.shopsList.shopsList);
 
   const dispatch = useDispatch();
 
@@ -30,7 +31,7 @@ const Body = () => {
   };
 
   const removeShopHandler = (shopId) => {
-    dispatch({ type: "removeShop", removingShopId: shopId });
+    dispatch(shopListActions.removeShop(shopId));
     setShowModal(false);
   };
 

@@ -4,9 +4,10 @@ import classes from "./EditShop.module.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import { shopListActions } from "../../store";
 
 const EditShop = () => {
-  const shopsList = useSelector((state) => state.shopsList);
+  const shopsList = useSelector((state) => state.shopsList.shopsList);
   const params = useParams();
   const { shopId } = params;
 
@@ -27,17 +28,15 @@ const EditShop = () => {
     if (!shopName.match(/^[A-Z  a-z]+$/)) {
       setError("Name must be alphbets only");
     } else {
-      dispatch({
-        type: "updateShop",
-        updatedShop: {
-          id: shop.id,
-          shopName: shopName,
-          shopArea: shopArea,
-          shopType: shopType,
-          openingDate: openingDate,
-          closingDate: closingDate,
-        },
-      });
+      const updatedShop = {
+        id: shop.id,
+        shopName: shopName,
+        shopArea: shopArea,
+        shopType: shopType,
+        openingDate: openingDate,
+        closingDate: closingDate,
+      };
+      dispatch(shopListActions.updateShop(updatedShop));
       alert("Shop Updated successfully");
       history.push(`/shop/${shopId}`);
     }
