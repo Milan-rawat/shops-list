@@ -7,6 +7,28 @@
   background-color: white;
 }
 
+.filters {
+  display: flex;
+  width: 100%;
+  margin: 5px;
+}
+.filters .filter,
+p {
+  margin: 5px 10px;
+}
+.filters button {
+  width: 80px;
+  height: 30px;
+  border: 1px solid #3f51b5;
+  background-color: #3f51b5;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.filters button:hover {
+  color: white;
+}
+
 .shopLists {
   min-height: 88vh;
   display: flex;
